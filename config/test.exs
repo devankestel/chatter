@@ -16,7 +16,14 @@ config :chatter, Chatter.Repo,
 # you can enable the server option below.
 config :chatter, ChatterWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+config :chatter, :sql_sandbox, true
+
+config :wallaby,
+  driver: Wallaby.Chrome,
+  chrome: [
+    headless: true
+  ]
