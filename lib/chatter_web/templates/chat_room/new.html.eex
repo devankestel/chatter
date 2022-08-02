@@ -5,5 +5,7 @@
             <%= error_tag f, :name %>
             <%= text_input f, :name %>
         </label>
+        
+        <%= submit "Submit" %>
     <% end %>
 </div>
