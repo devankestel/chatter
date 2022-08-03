@@ -17,6 +17,8 @@ defmodule ChatterWeb.ChatRoomController do
         case Chatter.Chat.create_chat_room(room_params) do
         {:ok, room} ->
             redirect(conn, to: Routes.chat_room_path(conn, :show, room))
+        {:error, changeset} ->
+            render(conn, "new.html", changeset: changeset)
         end
     end
 end
