@@ -6,4 +6,7 @@
             <%= room.name %>
         </li>
     <% end %>
+    <div>
+        <%= link "New chat room", to: Routes.chat_room_path(@conn, :new) %>
+    </div>
 </ul>
