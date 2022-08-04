@@ -48,6 +48,6 @@ defmodule ChatterWeb.UserCanChatTest do
     end
 
     defp message(text) do
-        Query.data("data", "message", text: text)
+        Query.data("role", "message", text: text)
     end
 end
