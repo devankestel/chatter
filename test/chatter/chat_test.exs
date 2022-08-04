@@ -1,7 +1,5 @@
 defmodule Chatter.ChatTest do
     use Chatter.DataCase, async: true
-    
-    import Chatter.Factory
 
     alias Chatter.Chat 
 

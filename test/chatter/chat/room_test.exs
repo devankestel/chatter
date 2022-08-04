@@ -3,7 +3,6 @@ defmodule Chatter.Chat.RoomTest do
 
     alias Chatter.Chat.Room
 
-    import Chatter.Factory
 
     describe "changeset/2" do
         test "validates that a name is provided" do
