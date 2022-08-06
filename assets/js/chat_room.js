@@ -1,6 +1,6 @@
 import socket from "./socket"
 
-let chatRoomTitle = document.getElementById("title")
+let chatRoomTitle = document.getElementById("chat-room-title")
 
 if (chatRoomTitle) {
   let chatRoomName = chatRoomTitle.dataset.chatRoomName
