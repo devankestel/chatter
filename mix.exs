@@ -10,7 +10,10 @@ defmodule Chatter.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      preferred_cli_env: [
+        "test.js": :test,
+      ]
     ]
   end
 
@@ -62,7 +65,16 @@ defmodule Chatter.MixProject do
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "test.js": ["assets.compile", "ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.compile": &compile_assets/1,
     ]
+  end
+
+  defp compile_assets(_) do
+    Mix.shell().cmd(
+      "cd assets && ./node_modules/webpack/bin/webpack.js --mode development",
+      quiet: true,
+    ) 
   end
 end
