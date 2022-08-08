@@ -3,11 +3,20 @@ defmodule ChatterWeb.UserVisitsRoomsPageTest do
 
     test "user visits rooms page to see a list of rooms", %{session: session} do
         [room1, room2] = insert_pair(:chat_room)
+        user = build(:user) |> set_password("password") |> insert()
         
         session
         |> visit(rooms_index())
+        |> sign_in(as: user)
         |> assert_has(room_name(room1))
         |> assert_has(room_name(room2))
+    end
+
+    defp sign_in(session, as: user) do
+        session
+        |> fill_in(Query.text_field("Email"), with: user.email)
+        |> fill_in(Query.text_field("Password"), with: user.password)
+        |> click(Query.button("Sign in")) 
     end
 
     defp rooms_index, do: Routes.chat_room_path(@endpoint, :index)
