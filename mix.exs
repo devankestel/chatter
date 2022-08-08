@@ -75,7 +75,7 @@ defmodule Chatter.MixProject do
   defp compile_assets(_) do
     Mix.shell().cmd(
       "cd assets && ./node_modules/webpack/bin/webpack.js --mode development",
-      quiet: true,
+      quiet: true
     ) 
   end
 end
