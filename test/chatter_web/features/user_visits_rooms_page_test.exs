@@ -1,11 +1,13 @@
 defmodule ChatterWeb.UserVisitsRoomsPageTest do
-    use ChatterWeb.FeatureCase, async: true 
+    use ChatterWeb.FeatureCase, async: true
 
     test "user visits rooms page to see a list of rooms", %{session: session} do
         [room1, room2] = insert_pair(:chat_room)
+        user = build(:user) |> set_password("password") |> insert()
         
         session
         |> visit(rooms_index())
+        |> sign_in(as: user)
         |> assert_has(room_name(room1))
         |> assert_has(room_name(room2))
     end

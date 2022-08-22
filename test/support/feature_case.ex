@@ -6,6 +6,8 @@ defmodule ChatterWeb.FeatureCase do
         use Wallaby.DSL
 
         import Chatter.Factory
+        import ChatterWeb.FeatureHelpers
+
         alias ChatterWeb.Router.Helpers, as: Routes
   
         @endpoint ChatterWeb.Endpoint
