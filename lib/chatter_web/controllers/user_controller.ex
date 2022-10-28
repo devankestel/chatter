@@ -2,6 +2,7 @@ defmodule ChatterWeb.UserController do
     use ChatterWeb, :controller
 
     alias Doorman.Auth.Secret
+    alias Doorman.Login.Session
     alias Chatter.User
     alias Chatter.Repo 
 
@@ -11,13 +12,14 @@ defmodule ChatterWeb.UserController do
     end
 
     def create(conn, %{"user" => params}) do
-        {:ok, _user} = 
+        {:ok, user} = 
             %User{}
             |> User.changeset(params)
             |> Secret.put_session_secret()
             |> Repo.insert()
         
         conn 
+        |> Session.login(user)
         |> redirect(to: "/")
     end
 end
