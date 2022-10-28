@@ -5,7 +5,7 @@ defmodule ChatterWeb.UserController do
     alias Chatter.{Accounts, User}
 
     def new(conn, _params) do
-        changeset = User.changeset(%User{}, %{})
+        changeset = Accounts.change_user(%User{})
         render(conn, "new.html", changeset: changeset) 
     end
 
