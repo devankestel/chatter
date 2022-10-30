@@ -10,6 +10,15 @@ defmodule ChatterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Doorman.Login.Session
+    plug :put_user_email
+  end
+
+  defp put_user_email(conn, _) do
+    if current_user = conn.assigns[:current_user] do
+      assign(conn, :email, current_user.email)
+    else
+      conn
+    end
   end
 
   pipeline :api do
